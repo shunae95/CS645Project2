@@ -19,10 +19,6 @@ def ReadFiles():
                 needed_directories.append(directories)
     
     inorder_days = sorted(needed_directories)
-        
-    print(root_directories)
-    print(needed_directories)
-    print(inorder_days)
     count = 0
     
     for day in inorder_days:
@@ -46,13 +42,15 @@ def ReadFiles():
         print(hash_data)
         day_hash = MerkleHashData(hash_data)
         print(day_hash)
-        returned_day_hash = data = list(day_hash)
-        hashes.append(returned_day_hash)
+        hashes.append(day_hash)
+        print(hashes)
         count = count + 1
+        combined_hash = [day_hash, hashes[count-1]]
+        needed_hash = MerkleHashData(combined_hash)
+        print("Hash of Day " + str(count) + ": " + needed_hash)
         in_order_files = []
         files_in_directory = []
     
-    overall_hash = MerkleHashData(hashes)
     return hash_data
 
 
